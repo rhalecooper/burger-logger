@@ -17,11 +17,15 @@ app.set('view engine', 'handlebars');
 
 // import routes  
 
-var routes = require('./controllers/burgerController.js');
+var routes = require('./controllers/burgers_controller.js');
 app.use(routes);
 
 // Start the server 
 
 app.listen(PORT, function() {
+    console.log (' ');
+    console.log (' ');
+    console.log (' ');
     console.log("Express server listening on: http://localhost:" + PORT);
+    console.log (' ');
 });

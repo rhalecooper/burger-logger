@@ -1,0 +1,107 @@
+<div class="row" id="outer-row">
+  <div class="col-1" id="left-column"> </div>
+  <div class="col-10" id="center-column">
+
+    <div class="burger-header">
+      <img src="./assets/img/burger.png" alt="Burger Pic"> 
+    </div>
+
+    {{!-- start of burger area row --}}
+    <div class="row" id="burger-area">
+
+      <div class="col-1"> </div>
+      <div class="col-5" id="undevoured-burger">
+
+        <ul>
+          {{#each burgers}}
+            {{#unless devoured}}
+              <li class="burger-list">
+                <div class="row">
+                  <div class="col-8">
+                    <p class='burger-name1'>{{burger_name}}</p>
+                  </div>
+                  <div class="col-4">
+                    <button 
+                      class=" btn btn-success change-devoured" 
+                      data-id="{{id}}"
+                      data-newdevoured="1">
+                      DEVOURER IT
+                    </button>
+                  </div>
+                </div>
+              </li>
+            {{/unless}}
+          {{/each}}
+        </ul>
+
+      </div>
+
+      <div class="col-5" id="devoured-burgers">
+
+        <ul>
+          {{#each burgers}}
+            {{#if devoured}}
+              <li class="burger-list">
+                <div class="row">
+                  <div class="col-8">
+                    <p class='burger-name2'>{{burger_name}}</p>
+                  </div>
+                  <div class="col-4">
+                    <button 
+                      class=" btn btn-success change-devoured" 
+                      data-id="{{id}}" 
+                      data-newdevoured="0">
+                      MAKE ME ANOTHER
+                    </button>
+                  </div>
+                </div>
+              </li>
+            {{/if}}
+          {{/each}}
+        </ul>
+
+      </div>
+      <div class="col-1"> </div>
+
+    </div>
+    {{!-- end of burger area row --}}
+
+    <div class="row">
+      <div class="col-12"> 
+        &nbsp;  
+      </div> 
+    </div>
+
+    <div class="row"> 
+      <div class="col-5"> </div>
+      <div class="col-3 text-center">
+
+        <h2>Add Your Own Burger!</h2>
+        <form class="create-form ">
+          <div class="form-group">
+            <label for="ba">Burger Name:</label>
+            <input type="text" id="ba" name="name">
+          </div>
+
+          <div class="form-group">
+            <label for='devoured'>Devoured?</label>
+            <br>
+            <input type='radio' name='devoured' value='0' checked> Not Eaten 
+            <br>
+            <input type="radio" name='devoured' value='1'> Devoured
+          </div>
+
+          <button type="submit" id="#add-burger-button" class='btn btn-primary'> 
+          Add Burger
+          </button>
+
+        </form>
+      </div>
+      <div class="col-5"> </div>
+
+    </div>
+  </div> {{!-- end of center column --}}
+
+  <div class="col-1" id="left-column"> </div>
+
+</div> {{!-- outer-row --}}

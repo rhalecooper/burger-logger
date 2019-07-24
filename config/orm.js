@@ -1,7 +1,10 @@
 // Import MySQL database connection
+
    var database = require("../config/connection.js");
 
-// Get question mark string for SQL syntax based on number of values
+// Build a  question mark string for SQL syntax 
+// based on number of values passed in to the function
+
    function getQuestionMarksForSQL(numberOfVals) {
       var questionMarkArray = [];
       for (var i = 0; i < numberOfVals; i++) {questionMarkArray.push("?");}
@@ -13,14 +16,16 @@
 // --------------------------------------------------------
    function getColumnsForUpdateSQL(obj) {
    var arrayOfStrings = [];
+   // -------------------------------------------------
    // loop through the column key/value pairs
-   // convert key/value to a string
-   // push the key/value strings into the arrayOfStrings
+   // convert each key/value to a string
+   // push the key/value string into the arrayOfStrings
+   // -------------------------------------------------
    for (var key in obj) {
       var column = key;
       var value  = obj[key];  
       if (Object.hasOwnProperty.call(obj, key)) {
-         // check for spaces in the string 
+         // add quote if string has spaces in it
          if (typeof value === "string" && value.indexOf(" ") >= 0) {
             value = " ' " + value + " ' ";
          }
@@ -28,10 +33,12 @@
       }
    }
    // convert array of strings to a signle comma-separated string
-   return arrayOfStrings.toString();
+   const return_string = arrayOfStrings.toString();
+   console.log ("return_string is", return_string)
+   return return_string
    }
 
-// orm object for all SQL statements
+// orm object for SQL select, create, update, and delete
 
 var orm = {
 

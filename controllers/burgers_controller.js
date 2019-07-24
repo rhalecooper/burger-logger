@@ -1,18 +1,19 @@
 
    var express = require('express');
    var router  = express.Router();
-   var burger  = require('../models/burgerModel.js');
+   var burger  = require('../models/burger.js');
 
 // create routes
 
    router.get('/', function(req, res) {
       burger.all(function(data) {
-         var hbsObject = { burgers: data };
-         // console.log(hbsObject);
-         res.render('index', hbsObject);
+         var handlebarObj = { burgers: data };
+         // console.log(handlebarObj);
+         res.render('index', handlebarObj);
       });
    });
 
+   // insert new burger into database
    router.post('/api/burger', function(req, res) {
       burger.create(
          [ "burger_name", "devoured"], 
@@ -21,15 +22,15 @@
       );
    });
 
+   // Update a burger in the database
    router.put('/api/burgers/:id', function(req, res) {
       var condition = 'id = ' + req.params.id;
-      // console.log('condition', condition);
+      console.log('In burgers_controller,js, /api/burgers/:id, condition is', condition);
       burger.update (
          { devoured: req.body.devoured }, 
          condition, 
          function(result) {
-            if (result.changedRows == 0) {
-               // id must not exist
+            if (result.changedRows == 0) { 
                return res.status(404).end();
             } else {
                res.status(200).end();
@@ -44,8 +45,7 @@
          condition, 
          function(result) {
             if (result.affectedRows == 0) {
-               // ID must not exist, so 404
-               return res.status(404).end();
+               return res.status(404).end();  
             } else {
                res.status(200).end();
             }
