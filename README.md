@@ -1,3 +1,3 @@
 # burger-logger 
 
-Link to app on heroku: https://blablablah.herokuapp.com/
+Link to app on heroku: https://blooming-plateau-36248.herokuapp.com/
